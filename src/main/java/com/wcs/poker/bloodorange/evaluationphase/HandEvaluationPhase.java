@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class HandEvaluationPhase implements EvaluationPhase {
 
-    private List<Rank> highRanks = new ArrayList<>();
+    private final List<Rank> highRanks = new ArrayList<>();
 
     public HandEvaluationPhase() {
         highRanks.add(Rank.TEN);
