@@ -4,9 +4,10 @@ import com.wcs.poker.gamestate.GameState;
 
 public class Player {
 
-    static final String VERSION = "Default Java folding player";
+    static final String VERSION = "BloodOrange";
 
     public static int betRequest(GameState gameState) {
+
         return 0;
     }
 
