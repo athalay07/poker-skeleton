@@ -1,7 +1,6 @@
 package com.wcs.poker.bloodorange.evaluationphase;
 
 import com.wcs.poker.gamestate.GameState;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,10 +8,35 @@ import java.util.List;
  */
 public class Evaluator {
 
-    List<EvaluationPhase> phases = Arrays.asList(new EvaluationPhase[]{});
+    List<EvaluationPhase> phases;
+
+    public Evaluator(List<EvaluationPhase> phases) {
+        this.phases = phases;
+    }
 
     public int evaluate(GameState gameState) {
-        return 0;
+        int goodness = 0;
+        for (EvaluationPhase phase : phases) {
+            goodness += phase.eval(gameState);
+        }
+
+        if (goodness <= 0) {
+            return 0;
+        }
+
+        if (goodness <= 5) {
+            return gameState.getCall();
+        }
+
+        if (goodness > 5 && goodness <= 10) {
+            return gameState.getRaise();
+        }
+
+        if (goodness > 10) {
+            return gameState.getRaise() + gameState.getMinimumRaise(); //getraise contains one min raise already
+        }
+
+        return goodness;
     }
 
 }

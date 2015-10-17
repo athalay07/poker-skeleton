@@ -13,6 +13,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
@@ -27,13 +29,49 @@ public class EvaluatorTest {
 
     @Test
     public void evaluationTest() throws IOException, URISyntaxException {
-        Evaluator evaluator = new Evaluator();
+        Evaluator evaluator = createPhase(2);
+        GameState gameState = getGameState();
+
+        assertEquals(gameState.getCall(), evaluator.evaluate(gameState));
+    }
+
+    @Test
+    public void evaluationTestMinRaise() throws IOException, URISyntaxException {
+        Evaluator evaluator = createPhase(7);
+        GameState gameState = getGameState();
+
+        assertEquals(gameState.getRaise(), evaluator.evaluate(gameState));
+    }
+    @Test
+    public void evaluationTestFold() throws IOException, URISyntaxException {
+        Evaluator evaluator = createPhase(-2);
+        GameState gameState = getGameState();
+
+        assertEquals(0, evaluator.evaluate(gameState));
+    }
+    @Test
+    public void evaluationTestBigRaise() throws IOException, URISyntaxException {
+        Evaluator evaluator = createPhase(11);
+        GameState gameState = getGameState();
+
+        assertEquals(gameState.getRaise() + gameState.getMinimumRaise(), evaluator.evaluate(gameState));
+    }
+
+    public GameState getGameState() throws IOException, URISyntaxException {
         URL resource = getClass().getResource("/testGameState.json");
         Files.readAllBytes(Paths.get(resource.toURI()));
         String json = new String(Files.readAllBytes(Paths.get(resource.toURI())), StandardCharsets.UTF_8);
-
         GameState gameState = new JsonConverter<>(GameState.class).fromJson(json);
+        return gameState;
+    }
 
+    public static Evaluator createPhase(final int goodness) {
+        return new Evaluator(Arrays.asList(new EvaluationPhase[]{new EvaluationPhase() {
+            @Override
+            public int eval(GameState gameState) {
+                return goodness;
+            }
+        }}));
     }
 
 }
