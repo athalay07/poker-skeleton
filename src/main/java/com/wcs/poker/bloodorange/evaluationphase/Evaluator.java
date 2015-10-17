@@ -24,7 +24,7 @@ public class Evaluator {
             return 0;
         }
 
-        if (goodness <= 10) {
+        if (goodness <= 8) {
             return gameState.getCall();
         }
 
