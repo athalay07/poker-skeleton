@@ -33,19 +33,19 @@ public class HandEvaluationPhase implements EvaluationPhase {
         int value = 0;
 
         if (highRanks.contains(rank1) || highRanks.contains(rank2)) {
-            value = 2;
-        }
-
-        if (highRanks.contains(rank1) && highRanks.contains(rank2) && sameSuit) {
-            value = 4;
+            value = 1;
         }
 
         if (highRanks.contains(rank1) && highRanks.contains(rank2)) {
-            value = 6;
+            value = 2;
+        }
+
+        if ((highRanks.contains(rank1) || highRanks.contains(rank2)) && sameSuit) {
+            value = 4;
         }
 
         if (highRanks.contains(rank1) && highRanks.contains(rank2) && sameSuit) {
-            value = 8;
+            value = 6;
         }
 
         if (rank1.equals(rank2)) {
