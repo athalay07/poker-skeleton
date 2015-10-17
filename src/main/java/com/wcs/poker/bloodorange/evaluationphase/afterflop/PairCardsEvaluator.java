@@ -31,7 +31,7 @@ public class PairCardsEvaluator implements HandEvaluator {
         for (Map.Entry<Rank, Integer> entrySet : cardsByRank.entrySet()) {
             Integer value = entrySet.getValue();
             if (value == 2) {
-                return 7;
+                return 10;
             }
         }
         return 0;
