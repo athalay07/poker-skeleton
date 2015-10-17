@@ -7,6 +7,9 @@ package com.wcs.poker.bloodorange.evaluationphase;
 
 import com.wcs.poker.gamestate.GameState;
 import com.wcs.poker.gamestate.Player;
+import com.wcs.poker.gamestate.Rank;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,13 +17,40 @@ import com.wcs.poker.gamestate.Player;
  */
 public class HandEvaluationPhase implements EvaluationPhase {
 
+    private List<Rank> highRanks = new ArrayList<>();
+
+    public HandEvaluationPhase() {
+        highRanks.add(Rank.TEN);
+        highRanks.add(Rank.JACK);
+        highRanks.add(Rank.QUEEN);
+        highRanks.add(Rank.KING);
+        highRanks.add(Rank.ACE);
+    }
+
     @Override
     public int eval(GameState gameState) {
         Player player = gameState.getPlayers().get(gameState.getInAction());
-        if (player.getHoleCards().get(0).getRank().equals(player.getHoleCards().get(1).getRank())) {
-            return gameState.getCurrentBuyIn() - player.getBet() + gameState.getMinimumRaise();
+        Rank rank1 = player.getHoleCards().get(0).getRank();
+        Rank rank2 = player.getHoleCards().get(1).getRank();
+        int value = 0;
+
+        if (highRanks.contains(rank1) || highRanks.contains(rank2)) {
+            value = 2;
         }
-        return 0;
+
+        if (highRanks.contains(rank1) && highRanks.contains(rank2)) {
+            value = 4;
+        }
+
+        if (rank1.equals(rank2)) {
+            value = 12;
+        }
+
+        if (rank1.equals(rank2) && highRanks.contains(rank1)) {
+            value = 20;
+        }
+
+        return value;
     }
-    
+
 }
