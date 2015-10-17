@@ -20,7 +20,7 @@ public class Evaluator {
             goodness += phase.eval(gameState);
         }
 
-        if (goodness <= 9) {
+        if (goodness <= 6) {
             return 0;
         }
 

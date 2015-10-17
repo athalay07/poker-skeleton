@@ -40,13 +40,13 @@ public class HandEvaluationPhase implements EvaluationPhase {
 //            value = 2;
 //        }
 //
-//        if ((highRanks.contains(rank1) || highRanks.contains(rank2)) && sameSuit) {
-//            value = 4;
-//        }
-//
-//        if (highRanks.contains(rank1) && highRanks.contains(rank2) && sameSuit) {
-//            value = 6;
-//        }
+        if ((highRanks.contains(rank1) || highRanks.contains(rank2)) && sameSuit) {
+            value = 4;
+        }
+
+        if (highRanks.contains(rank1) && highRanks.contains(rank2) && sameSuit) {
+            value = 6;
+        }
 
         if (rank1.equals(rank2)) {
             value = 12;
