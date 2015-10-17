@@ -37,7 +37,7 @@ public class EvaluatorTest {
 
     @Test
     public void evaluationTestMinRaise() throws IOException, URISyntaxException {
-        Evaluator evaluator = createPhase(7);
+        Evaluator evaluator = createPhase(12);
         GameState gameState = getGameState();
 
         assertEquals(gameState.getRaise(), evaluator.evaluate(gameState));
@@ -51,7 +51,7 @@ public class EvaluatorTest {
     }
     @Test
     public void evaluationTestBigRaise() throws IOException, URISyntaxException {
-        Evaluator evaluator = createPhase(11);
+        Evaluator evaluator = createPhase(16);
         GameState gameState = getGameState();
 
         assertEquals(gameState.getRaise() + gameState.getMinimumRaise(), evaluator.evaluate(gameState));
