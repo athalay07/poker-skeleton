@@ -20,6 +20,7 @@ public class AfterFlopHandEvaluationPhase implements EvaluationPhase {
 
     List<HandEvaluator> evaluators = Arrays.asList(new HandEvaluator[]{
         new PokerCardsEvaluator(),
+        new FullEvaluator(),
         new FlushEvaluator(),
         new DrillCardsEvaluator(),
         new TwoPairsCardsEvaluator(),
