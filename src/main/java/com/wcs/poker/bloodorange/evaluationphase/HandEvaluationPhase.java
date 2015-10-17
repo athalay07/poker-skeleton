@@ -7,9 +7,9 @@ package com.wcs.poker.bloodorange.evaluationphase;
 
 import com.wcs.poker.gamestate.Card;
 import com.wcs.poker.gamestate.GameState;
+import com.wcs.poker.gamestate.HighRanks;
 import com.wcs.poker.gamestate.Player;
 import com.wcs.poker.gamestate.Rank;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,15 +18,7 @@ import java.util.List;
  */
 public class HandEvaluationPhase implements EvaluationPhase {
 
-    private final List<Rank> highRanks = new ArrayList<>();
-
-    public HandEvaluationPhase() {
-        highRanks.add(Rank.TEN);
-        highRanks.add(Rank.JACK);
-        highRanks.add(Rank.QUEEN);
-        highRanks.add(Rank.KING);
-        highRanks.add(Rank.ACE);
-    }
+    private final List<Rank> highRanks = new HighRanks();
 
     @Override
     public int eval(GameState gameState) {
