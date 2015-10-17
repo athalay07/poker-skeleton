@@ -33,7 +33,7 @@ public class FlushEvaluator implements HandEvaluator {
         for (Map.Entry<Suit, Integer> entrySet : suits.entrySet()) {
             Integer value = entrySet.getValue();
             if (value == 5) {
-                return 16;
+                return 18;
             }
         }
 
