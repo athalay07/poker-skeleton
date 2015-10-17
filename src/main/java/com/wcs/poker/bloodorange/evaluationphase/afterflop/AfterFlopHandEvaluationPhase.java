@@ -22,7 +22,8 @@ public class AfterFlopHandEvaluationPhase implements EvaluationPhase {
         new PokerCardsEvaluator(),
         new FlushEvaluator(),
         new DrillCardsEvaluator(),
-        new TwoPairsCardsEvaluator()
+        new TwoPairsCardsEvaluator(),
+        new PairCardsEvaluator()
     });
 
     @Override
