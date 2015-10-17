@@ -25,11 +25,7 @@ public class StackEvaluationPhase implements EvaluationPhase {
             value = minRaise * 10 / stack;
         }
 
-        if (value > 5) {
-            value = 5;
-        }
-
-        return value;
+        return Math.min(value, 5);
     }
 
 }
