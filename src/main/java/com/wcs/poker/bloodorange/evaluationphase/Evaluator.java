@@ -24,16 +24,19 @@ public class Evaluator {
             return 0;
         }
 
-        if (goodness <= 8) {
+        if (goodness <= 12) {
             return gameState.getCall();
         }
 
-        if (goodness > 10 && goodness <= 15) {
+        if (goodness > 12 && goodness <= 14) {
             return gameState.getRaise();
         }
 
-        if (goodness > 15) {
+        if (goodness > 14 && goodness <= 18) {
             return gameState.getRaise() + gameState.getMinimumRaise(); //getraise contains one min raise already
+        }
+        if (goodness > 18) {
+            return gameState.getRaise() + gameState.getMinimumRaise() * 2; //getraise contains one min raise already
         }
 
         return goodness;

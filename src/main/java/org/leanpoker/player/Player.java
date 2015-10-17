@@ -5,6 +5,7 @@ import com.wcs.poker.bloodorange.evaluationphase.Evaluator;
 import com.wcs.poker.bloodorange.evaluationphase.HandEvaluationPhase;
 import com.wcs.poker.bloodorange.evaluationphase.RaiseMoneyEvaulationPhase;
 import com.wcs.poker.bloodorange.evaluationphase.StackEvaluationPhase;
+import com.wcs.poker.bloodorange.evaluationphase.afterflop.AfterFlopHandEvaluationPhase;
 import com.wcs.poker.gamestate.GameState;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,13 +18,17 @@ public class Player {
     static List<EvaluationPhase> phases = new ArrayList<>();
 
     public static int betRequest(GameState gameState) {
-        Evaluator evaluator = new Evaluator(Arrays.asList(new EvaluationPhase[]{
+        Evaluator preFlopEvaluator = new Evaluator(Arrays.asList(new EvaluationPhase[]{
             new HandEvaluationPhase(),
             new StackEvaluationPhase(),
             new RaiseMoneyEvaulationPhase()
         }));
 
-        return evaluator.evaluate(gameState);
+        if (gameState.getCommunityCards().isEmpty()) {
+            return preFlopEvaluator.evaluate(gameState);
+        } else {
+            return new AfterFlopHandEvaluationPhase().eval(gameState);
+        }
     }
 
     public static void showdown(GameState gameState) {
