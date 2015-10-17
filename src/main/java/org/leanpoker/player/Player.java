@@ -23,7 +23,7 @@ public class Player {
             sum += phase.eval(gameState);
         }
 
-        return 0;
+        return gameState.getCurrentBuyIn() - player.getBet();
     }
 
     public static void showdown(GameState gameState) {
