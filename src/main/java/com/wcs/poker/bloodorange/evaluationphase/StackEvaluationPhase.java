@@ -29,7 +29,7 @@ public class StackEvaluationPhase implements EvaluationPhase {
             value = 5;
         }
 
-        return value;
+        return -value;
     }
 
 }

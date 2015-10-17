@@ -24,15 +24,15 @@ public class Evaluator {
             return 0;
         }
 
-        if (goodness <= 5) {
+        if (goodness <= 10) {
             return gameState.getCall();
         }
 
-        if (goodness > 5 && goodness <= 10) {
+        if (goodness > 10 && goodness <= 15) {
             return gameState.getRaise();
         }
 
-        if (goodness > 10) {
+        if (goodness > 15) {
             return gameState.getRaise() + gameState.getMinimumRaise(); //getraise contains one min raise already
         }
 
