@@ -9,7 +9,13 @@ public class RaiseMoneyEvaulationPhase implements EvaluationPhase {
 
     @Override
     public int eval(GameState gameState) {
-        int result = gameState.getMinimumRaise() * 10 / gameState.getCall();
+        int call = gameState.getCall();
+
+        if (call == 0) {
+            return 0;
+        }
+
+        int result = gameState.getMinimumRaise() * 10 / call;
 
         return Math.min(result, 3);
     }
